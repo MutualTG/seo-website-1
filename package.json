@@ -12,10 +12,9 @@
     "next": "14.2.0",
     "react": "^18",
     "react-dom": "^18",
-    "@repo/database": "*",
-    "@repo/seo-tools": "*",
-    "@repo/ui-components": "*",
-    "@repo/shared": "*"
+    "@repo/database": "file:./packages/database",
+    "@repo/seo-tools": "file:./packages/seo-tools",
+    "@repo/shared": "file:./packages/shared"
   },
   "devDependencies": {
     "typescript": "^5",
