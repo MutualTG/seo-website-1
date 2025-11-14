@@ -1,0 +1,2 @@
+# Redirect missing images to placeholder
+ErrorDocument 404 /favicon.svg

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.telegramtgm.com
+
+# Sitemaps
+Sitemap: https://www.telegramtgm.com/sitemap.xml

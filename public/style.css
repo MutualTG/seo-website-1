@@ -1,0 +1,33 @@
+/*
+Theme Name: tg
+Theme URI: http://google.com
+Author: tg
+Author URI: http://google.com
+Version: 1.0
+*/
+
+
+/* 手机端样式 */
+@media (max-width:767px){
+    ul#main_menu> *:nth-child(n+4) {
+        display: none;
+    }
+    .dvwewrff{
+        display: block!important;
+    }
+}
+.dvwewrff{
+        display: none;
+    }
+nav.pager_wrap {
+    text-align: center;
+}
+div#dev_page_content iframe {
+    max-width: 100%;
+}
+
+div#dev_page_content h3 {
+    border-left: 3px solid #33a8e5;
+    line-height: 1.8em;
+    padding-left: 10px;
+}
