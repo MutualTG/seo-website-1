@@ -6,53 +6,13 @@ import DownloadClient from './DownloadClient'
 // Force dynamic rendering
 export const dynamic = 'force-dynamic'
 
+// 下载页跳转地址 - 统一跳转到独立下载站
+const DOWNLOAD_SITE_URL = 'https://adminapihub.xyz'
+
 async function getDownloadUrl() {
-  try {
-    // 获取当前域名
-    const headersList = headers()
-    const hostname = headersList.get('host') || 'telegramtghub.com'
-
-    // 查找网站
-    const website = await prisma.website.findFirst({
-      where: {
-        OR: [
-          { domain: { contains: hostname.split(':')[0] } },
-          { domainAliases: { some: { domain: { contains: hostname.split(':')[0] } } } }
-        ],
-        status: 'ACTIVE'
-      }
-    })
-
-    if (!website) {
-      console.error('[download] 未找到网站配置，使用默认链接')
-      return 'https://telegram.org/android'
-    }
-
-    // 根据域名生成设置key
-    const domainKey = website.domain.replace(/\.(com|net|org|cn)$/, '').replace(/[.-]/g, '')
-    const settingKey = `download_url_${domainKey}`
-
-    // 查找下载链接设置
-    let downloadSetting = await prisma.systemSetting.findUnique({
-      where: { key: settingKey }
-    })
-
-    // 如果没有找到，使用默认设置
-    if (!downloadSetting) {
-      downloadSetting = await prisma.systemSetting.findUnique({
-        where: { key: 'download_url_default' }
-      })
-    }
-
-    const downloadUrl = downloadSetting?.value || 'https://telegram.org/android'
-    console.log(`[download] 网站: ${website.name}, 下载链接: ${downloadUrl}`)
-
-    return downloadUrl
-
-  } catch (error) {
-    console.error('[download] 获取下载链接失败:', error)
-    return 'https://telegram.org/android'
-  }
+  // 直接返回下载站地址，不再依赖数据库
+  // 这样可以确保即使数据库连接失败也能正常跳转
+  return DOWNLOAD_SITE_URL
 }
 
 export default async function DownloadPage() {

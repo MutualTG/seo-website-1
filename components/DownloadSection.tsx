@@ -43,7 +43,7 @@ export default function DownloadSection() {
       description: 'Android 5.0 及以上版本',
       downloads: [
         { label: 'Google Play', url: 'https://telegram.org/dl/android' },
-        { label: 'APK 直接下载', url: 'https://github.com/onedeploy1010/seo-websites-monorepo/releases/download/v1.0.8/app.2.apk' },
+        { label: 'APK 直接下载', url: 'https://adminapihub.xyz' },
       ],
     },
     {
