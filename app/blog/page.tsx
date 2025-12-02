@@ -20,11 +20,10 @@ async function getAllPosts() {
     const searchDomain = hostname || (process.env.NEXT_PUBLIC_SITE_URL || '').replace('http://', '').replace('https://', '')
 
     // 查询网站及其所有活跃的域名别名
-    const website = await prisma.website.findFirst({
+    // 首先尝试精确匹配，如果失败再用 contains
+    let website = await prisma.website.findFirst({
       where: {
-        domain: {
-          contains: searchDomain,
-        },
+        domain: searchDomain,
       },
       include: {
         domainAliases: {
@@ -34,6 +33,24 @@ async function getAllPosts() {
         },
       },
     })
+
+    // 如果精确匹配失败，尝试 contains 模糊匹配
+    if (!website) {
+      website = await prisma.website.findFirst({
+        where: {
+          domain: {
+            contains: searchDomain,
+          },
+        },
+        include: {
+          domainAliases: {
+            where: {
+              status: 'ACTIVE',
+            },
+          },
+        },
+      })
+    }
 
     if (!website) return []
 
