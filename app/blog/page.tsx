@@ -13,16 +13,17 @@ export const dynamic = 'force-dynamic'
 async function getAllPosts() {
   try {
     // 获取当前访问的域名
-    const headersList = headers()
+    const headersList = await headers()
     const hostname = headersList.get('host')?.split(':')[0] || ''
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || ''
+    // 直接使用请求头中的 hostname 查找网站（优先于环境变量）
+    const searchDomain = hostname || (process.env.NEXT_PUBLIC_SITE_URL || '').replace('http://', '').replace('https://', '')
 
     // 查询网站及其所有活跃的域名别名
     const website = await prisma.website.findFirst({
       where: {
         domain: {
-          contains: siteUrl.replace('http://', '').replace('https://', ''),
+          contains: searchDomain,
         },
       },
       include: {
