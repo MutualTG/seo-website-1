@@ -1,14 +1,17 @@
-interface JsonLdProps {
-  siteUrl?: string
-  siteName?: string
-  siteDescription?: string
-}
+import { headers } from 'next/headers'
+import { getDomainSEOMetadata } from '@/lib/get-website-by-domain'
 
-export default function JsonLd({
-  siteUrl = 'https://www.telegramtgm.com',
-  siteName = 'Telegram中文官网',
-  siteDescription = 'Telegram官方中文下载站，提供安卓、iOS、Windows、Mac等全平台客户端下载'
-}: JsonLdProps) {
+export default async function JsonLd() {
+  // 动态获取当前域名的SEO信息
+  const headersList = await headers()
+  const host = headersList.get('host') || 'www.telegramtgm.com'
+  const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http'
+  const siteUrl = `${protocol}://${host}`
+
+  // 获取域名对应的SEO配置
+  const seo = await getDomainSEOMetadata()
+  const siteName = seo.title
+  const siteDescription = seo.description
   // WebSite Schema - 增加搜索功能
   const websiteSchema = {
     '@context': 'https://schema.org',
