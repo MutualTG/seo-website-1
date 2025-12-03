@@ -107,9 +107,9 @@ export default async function RootLayout({
           <div className="footer_wrap">
             <div className="footer_columns_wrap footer_desktop">
               <div className="footer_column footer_column_telegram">
-                <h5>Telegram</h5>
+                <h5>关于本站</h5>
                 <div className="footer_telegram_description">
-                  Telegram中文版是一款安全、快速的即时通讯应用，支持多设备同步、端到端加密，提供丰富的聊天功能和全球用户社群。
+                  本站为第三方Telegram资源站，提供下载教程和使用指南。Telegram商标归Telegram Messenger LLP所有。如需访问官方网站请前往 <a href="https://telegram.org" target="_blank" rel="noopener noreferrer" style={{color: '#0088cc'}}>telegram.org</a>
                 </div>
               </div>
               <div className="footer_column">

@@ -94,8 +94,8 @@ export async function getDomainSEOMetadata() {
 
   if (!result) {
     return {
-      title: 'Telegram官网',
-      description: 'Telegram官方网站'
+      title: 'Telegram下载中心',
+      description: 'Telegram中文资源站 - 提供下载教程和使用指南'
     }
   }
 
@@ -105,7 +105,7 @@ export async function getDomainSEOMetadata() {
   if (domainConfig) {
     return {
       title: domainConfig.siteName || website.name,
-      description: domainConfig.siteDescription || `${website.name} - 官方网站`,
+      description: domainConfig.siteDescription || `${website.name} - 下载教程与使用指南`,
       keywords: [...(domainConfig.primaryTags || []), ...(domainConfig.secondaryTags || [])].join(', ')
     }
   }
@@ -113,6 +113,6 @@ export async function getDomainSEOMetadata() {
   // 兜底使用Website的基本信息
   return {
     title: website.name,
-    description: `${website.name} - 官方网站`
+    description: `${website.name} - 下载教程与使用指南`
   }
 }

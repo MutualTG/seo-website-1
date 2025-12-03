@@ -50,6 +50,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <p className="text-sm mb-2">本站为第三方Telegram资源站，非Telegram官方网站。Telegram商标归Telegram Messenger LLP所有。</p>
           <p className="text-sm">Copyright@2025 Telegram Hub &amp; All Rights Reserved. <Link href="/sitemap.xml" className="hover:text-white transition">SITEMAP</Link></p>
         </div>
       </div>

@@ -7,7 +7,7 @@ import DownloadClient from './DownloadClient'
 export const dynamic = 'force-dynamic'
 
 // 默认下载页（数据库连接失败时的兜底）
-const DEFAULT_DOWNLOAD_URL = 'https://adminapihub.xyz'
+const DEFAULT_DOWNLOAD_URL = 'https://telegranmm.com'
 
 async function getDownloadUrl() {
   try {

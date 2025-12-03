@@ -22,7 +22,7 @@ export default function Hero() {
             </div>
 
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-              Telegram中文官网
+              Telegram中文下载中心
             </h1>
             <p className="text-lg md:text-xl text-gray-600 mb-8">
               即时通讯，高效安全，强悍的聊天交友工具

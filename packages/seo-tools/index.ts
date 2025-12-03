@@ -22,3 +22,22 @@ export {
   checkRankings,
   type RankResult,
 } from './keyword-rank'
+
+// 竞争对手分析
+export {
+  analyzeCompetitor,
+  analyzeAllCompetitors,
+  generateArticleSuggestions,
+  exportReportAsMarkdown,
+  type CompetitorConfig,
+  type ArticleAnalysis,
+  type CompetitorReport,
+  type ArticleSuggestion,
+} from './competitor-analyzer'
+
+// 文章生成
+export {
+  generateArticleContent,
+  generateArticles,
+  generateFromSuggestions,
+} from './article-generator'

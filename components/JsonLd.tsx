@@ -31,12 +31,12 @@ export default async function JsonLd() {
     },
   }
 
-  // Organization Schema
+  // Organization Schema - 第三方资源站，不声称与Telegram官方有关联
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: siteName,
-    description: siteDescription,
+    description: `${siteDescription} - 本站为第三方资源站，非Telegram官方网站`,
     url: siteUrl,
     logo: {
       '@type': 'ImageObject',
@@ -50,11 +50,7 @@ export default async function JsonLd() {
       availableLanguage: ['zh-CN', 'en'],
       areaServed: 'CN',
     },
-    sameAs: [
-      'https://t.me/telegram',
-      'https://twitter.com/telegram',
-      'https://www.facebook.com/telegram',
-    ],
+    // 不再声称与Telegram官方社交媒体有关联
   }
 
   // SoftwareApplication Schema - 用于下载页SEO
@@ -123,7 +119,7 @@ export function ArticleJsonLd({
   datePublished,
   dateModified,
   authorName = 'Telegram Team',
-  siteName = 'Telegram中文官网',
+  siteName = 'Telegram中文资源站',
 }: ArticleJsonLdProps) {
   const articleSchema = {
     '@context': 'https://schema.org',
