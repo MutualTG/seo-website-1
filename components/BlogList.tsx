@@ -51,7 +51,7 @@ export default async function BlogList() {
         excerpt: post.metaDescription || post.content.substring(0, 100) + '…',
         date: new Date(post.createdAt).toLocaleDateString('zh-CN'),
         category: '使用教程',
-        author: 'Telegram官网',
+        author: 'TG资讯',
         readTime: '3 分钟',
         image: `/images/blog/blog${(index % 5) + 1}.jpg`,
       }))

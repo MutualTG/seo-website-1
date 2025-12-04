@@ -3,15 +3,15 @@ import { BreadcrumbJsonLd } from './JsonLd'
 
 // 站点网络配置 - 多站点互链
 const SITE_NETWORK = [
-  { domain: 'telegramservice.com', name: 'Telegram中文版', desc: '官方中文主站' },
+  { domain: 'telegramservice.com', name: 'Telegram中文版', desc: '中文资源站' },
   { domain: 'telegramtoolkit.com', name: 'Telegram工具箱', desc: '工具资源站' },
   { domain: 'telegranmm.com', name: 'Telegram下载', desc: 'APK下载站' },
 ]
 
-// Telegram 官方资源
+// Telegram 真正的官方资源 - 外链到telegram.org
 const OFFICIAL_RESOURCES = [
-  { url: 'https://telegram.org', name: 'Telegram官网' },
-  { url: 'https://desktop.telegram.org', name: '桌面版官网' },
+  { url: 'https://telegram.org', name: 'Telegram.org' },
+  { url: 'https://desktop.telegram.org', name: '桌面版' },
   { url: 'https://web.telegram.org', name: '网页版' },
 ]
 
@@ -31,11 +31,18 @@ export default async function Breadcrumb({
   showSiteNetwork = true,
   showOfficialLinks = true
 }: BreadcrumbProps) {
+  // 优先使用环境变量中的站点URL，避免localhost问题
+  const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL || ''
   const headersList = await headers()
   const host = headersList.get('host') || 'localhost:3001'
-  const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http'
-  const currentDomain = host.split(':')[0]
-  const siteUrl = `${protocol}://${host}`
+
+  // 如果配置了NEXT_PUBLIC_SITE_URL，使用它；否则从header构建
+  const siteUrl = configuredSiteUrl || `https://${host}`
+
+  // 从配置的URL或host中提取域名用于过滤
+  const currentDomain = configuredSiteUrl
+    ? new URL(configuredSiteUrl).hostname
+    : host.split(':')[0]
 
   // 构建完整URL的面包屑
   const fullItems = items.map(item => ({
@@ -43,8 +50,11 @@ export default async function Breadcrumb({
     url: item.url.startsWith('http') ? item.url : `${siteUrl}${item.url}`
   }))
 
-  // 过滤掉当前站点的其他站点
-  const otherSites = SITE_NETWORK.filter(site => !currentDomain.includes(site.domain.split('.')[0]))
+  // 过滤掉当前站点，只显示其他站点
+  const otherSites = SITE_NETWORK.filter(site => {
+    // 精确匹配：当前域名不能包含站点域名，且站点域名也不能包含当前域名
+    return site.domain !== currentDomain && !currentDomain.includes(site.domain) && !site.domain.includes(currentDomain.replace('www.', ''))
+  })
 
   return (
     <>
@@ -122,14 +132,14 @@ export default async function Breadcrumb({
           </div>
         )}
 
-        {/* 官方资源链接 */}
+        {/* Telegram.org官方资源链接 */}
         {showOfficialLinks && (
           <div className="official-links" style={{
             marginTop: '8px',
             fontSize: '12px',
             color: '#888'
           }}>
-            <span style={{ marginRight: '8px' }}>官方资源:</span>
+            <span style={{ marginRight: '8px' }}>Telegram.org:</span>
             {OFFICIAL_RESOURCES.map((resource, index) => (
               <span key={resource.url}>
                 {index > 0 && <span style={{ margin: '0 6px', color: '#ccc' }}>|</span>}

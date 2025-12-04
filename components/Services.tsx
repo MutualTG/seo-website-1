@@ -23,7 +23,7 @@ export default function Services() {
     {
       image: '/5.gif',
       title: '强大',
-      description: ['电报官网对所有类型', '文件和消息大小无限制。'],
+      description: ['Telegram对所有类型', '文件和消息大小无限制。'],
     },
     {
       image: '/6.gif',
@@ -38,7 +38,7 @@ export default function Services() {
     {
       image: '/8.gif',
       title: '社交',
-      description: ['Telegram官网可以隔离黑客攻击', '保护信息和邮件安全。'],
+      description: ['Telegram可以隔离黑客攻击', '保护信息和邮件安全。'],
     },
     {
       image: '/9.gif',

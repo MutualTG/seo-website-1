@@ -171,7 +171,7 @@ export default function DownloadSection() {
                   <svg className="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-gray-700">官方正版，安全可靠</span>
+                  <span className="text-gray-700">正版下载，安全可靠</span>
                 </div>
               </div>
             </div>
@@ -213,7 +213,7 @@ export default function DownloadSection() {
               rel="noopener noreferrer"
               className="bg-gray-100 text-gray-800 px-8 py-3 rounded-full font-semibold hover:bg-gray-200 transition"
             >
-              官方支持
+              技术支持
             </a>
           </div>
         </div>
