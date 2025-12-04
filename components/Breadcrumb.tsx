@@ -8,11 +8,20 @@ const SITE_NETWORK = [
   { domain: 'telegranmm.com', name: 'Telegram下载', desc: 'APK下载站' },
 ]
 
-// Telegram 真正的官方资源 - 外链到telegram.org
+// Telegram 真正的官方资源 - 外链到telegram.org (增加可信度)
 const OFFICIAL_RESOURCES = [
-  { url: 'https://telegram.org', name: 'Telegram.org' },
-  { url: 'https://desktop.telegram.org', name: '桌面版' },
-  { url: 'https://web.telegram.org', name: '网页版' },
+  { url: 'https://telegram.org', name: 'Telegram官网', desc: 'Telegram Messenger官方网站' },
+  { url: 'https://telegram.org/apps', name: '官方下载', desc: 'Telegram官方应用下载页' },
+  { url: 'https://desktop.telegram.org', name: '桌面版', desc: 'Telegram Desktop官方下载' },
+  { url: 'https://web.telegram.org', name: '网页版', desc: 'Telegram Web在线使用' },
+  { url: 'https://telegram.org/faq', name: '帮助中心', desc: 'Telegram官方FAQ' },
+  { url: 'https://core.telegram.org', name: '开发者', desc: 'Telegram API文档' },
+]
+
+// 官方社交媒体 - 增加权威性
+const OFFICIAL_SOCIAL = [
+  { url: 'https://twitter.com/telegram', name: 'Twitter', desc: 'Telegram官方Twitter' },
+  { url: 'https://t.me/telegram', name: '官方频道', desc: 'Telegram官方公告频道' },
 ]
 
 interface BreadcrumbItem {
@@ -132,28 +141,49 @@ export default async function Breadcrumb({
           </div>
         )}
 
-        {/* Telegram.org官方资源链接 */}
+        {/* Telegram.org官方资源链接 - 增加可信度 */}
         {showOfficialLinks && (
           <div className="official-links" style={{
-            marginTop: '8px',
+            marginTop: '10px',
+            padding: '10px 0',
+            borderTop: '1px dashed #e0e0e0',
             fontSize: '12px',
-            color: '#888'
+            color: '#666'
           }}>
-            <span style={{ marginRight: '8px' }}>Telegram.org:</span>
-            {OFFICIAL_RESOURCES.map((resource, index) => (
-              <span key={resource.url}>
-                {index > 0 && <span style={{ margin: '0 6px', color: '#ccc' }}>|</span>}
-                <a
-                  href={resource.url}
-                  title={resource.name}
-                  target="_blank"
-                  rel="noopener"
-                  style={{ color: '#0088cc', textDecoration: 'none' }}
-                >
-                  {resource.name}
-                </a>
-              </span>
-            ))}
+            <div style={{ marginBottom: '6px' }}>
+              <span style={{ marginRight: '8px', fontWeight: 500, color: '#333' }}>Telegram官方:</span>
+              {OFFICIAL_RESOURCES.map((resource, index) => (
+                <span key={resource.url}>
+                  {index > 0 && <span style={{ margin: '0 5px', color: '#ddd' }}>|</span>}
+                  <a
+                    href={resource.url}
+                    title={resource.desc}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: '#0088cc', textDecoration: 'none' }}
+                  >
+                    {resource.name}
+                  </a>
+                </span>
+              ))}
+            </div>
+            <div>
+              <span style={{ marginRight: '8px', fontWeight: 500, color: '#333' }}>关注官方:</span>
+              {OFFICIAL_SOCIAL.map((social, index) => (
+                <span key={social.url}>
+                  {index > 0 && <span style={{ margin: '0 5px', color: '#ddd' }}>|</span>}
+                  <a
+                    href={social.url}
+                    title={social.desc}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: '#0088cc', textDecoration: 'none' }}
+                  >
+                    {social.name}
+                  </a>
+                </span>
+              ))}
+            </div>
           </div>
         )}
       </nav>
